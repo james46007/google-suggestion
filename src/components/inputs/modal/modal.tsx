@@ -29,6 +29,7 @@ const Modal: React.FC<ModalProps> = ({isOpen, closeModal, content}: ModalProps) 
         </div>
         <div className="footer text-center mt-40">
           <button
+            data-cy="button_understood"
             type="button"
             className={`
               py-3

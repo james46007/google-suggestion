@@ -115,6 +115,7 @@ const SearchBoxComponent = () => {
                         />
                     </span>
           <input
+            data-cy="places-search"
             id="places-search"
             type="text"
             placeholder="Search places"
