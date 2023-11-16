@@ -1,4 +1,4 @@
-import {Prediction} from './IPredictions';
+import {Prediction} from '../api-google/IPredictions';
 
 export interface UnorderedListComponentProps {
   predictions: Prediction[];

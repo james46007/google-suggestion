@@ -1,6 +1,6 @@
 import React from 'react';
 import Popup from 'reactjs-popup';
-import {ModalProps} from "../../../interfaces/IModal";
+import {ModalProps} from "../../../interfaces/inputs/IModal";
 
 
 const Modal: React.FC<ModalProps> = ({isOpen, closeModal, content}: ModalProps) => {
