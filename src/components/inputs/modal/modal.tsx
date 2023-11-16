@@ -9,14 +9,6 @@ const Modal: React.FC<ModalProps> = ({isOpen, closeModal, content}: ModalProps) 
       open={isOpen}
       modal
       nested
-      contentStyle={{
-        maxWidth: 'lg:max-w-screen-sm sm:max-w-screen-md',
-        width: '80%',
-        backgroundColor: 'white',
-        padding: '20px',
-        marginTop: '20vh',
-        marginBottom: '20vh',
-      }}
       closeOnDocumentClick={false}
     >
       <div className="modal text-right p-4">
