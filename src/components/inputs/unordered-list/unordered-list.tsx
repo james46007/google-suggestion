@@ -8,6 +8,7 @@ const UnorderedListComponent: React.FC<UnorderedListComponentProps> = ({predicti
       <ul className="text-lg font-bold w-full bg-white">
         {predictions.map(({description, structured_formatting}: Prediction, index: number) => (
           <li
+            data-cy={index}
             key={index}
             className="border-t border-gray-300"
             onClick={() => openModal(description)}
