@@ -8,9 +8,13 @@ import {
   MESSAGE_ZIP_VALID, TOTAL_PREDICTIONS,
   ZIP_CODES
 } from '../../../utils/constants';
-import {Prediction} from '../../../interfaces/IPredictions';
-import {IModal} from "../../../interfaces/IModal";
+import {Prediction} from '../../../interfaces/api-google/IPredictions';
+import {IModal} from "../../../interfaces/inputs/IModal";
 import UnorderedListComponent from "../unordered-list/unordered-list";
+import Spinner from "../spinner/spinner";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {Address} from "../../../interfaces/api-google/IAddress";
 
 const SearchBoxComponent = () => {
 
@@ -19,9 +23,11 @@ const SearchBoxComponent = () => {
   const [autocomplete, setAutocomplete] = useState<any>({});
   const [isModalOpen, setModalOpen] = useState<boolean>(false);
   const [content, setContent] = useState<IModal>();
+  const [loading, setLoading] = useState<boolean>(false);
 
   const openModal = async (description: string) => {
     try {
+      setLoading(true);
       const {results} = await fetchData(description);
       const result: number = getZipCodeFromAddress(results);
 
@@ -30,10 +36,13 @@ const SearchBoxComponent = () => {
         setSearchValue(description)
       } else {
         setContent(MESSAGE_ZIP_INVALID);
+        setSearchValue(description)
       }
       setModalOpen(true);
-    } catch (error) {
+    } catch (error: any) {
+      toast.error(error.message || 'Unknown error');
     } finally {
+      setLoading(false);
     }
   };
 
@@ -41,7 +50,7 @@ const SearchBoxComponent = () => {
     setModalOpen(false);
   };
 
-  const getZipCodeFromAddress = (results: any[]) => {
+  const getZipCodeFromAddress = (results: Address[]) => {
     for (const result of results) {
       const addressComponent = result.address_components.find(
         (component: any) => component.types.includes('postal_code')
@@ -117,6 +126,8 @@ const SearchBoxComponent = () => {
       </div>
       <UnorderedListComponent predictions={predictions} openModal={openModal}/>
       <Modal isOpen={isModalOpen} closeModal={closeModal} content={content}/>
+      <Spinner loading={loading}/>
+      <ToastContainer />
     </div>
   );
 };

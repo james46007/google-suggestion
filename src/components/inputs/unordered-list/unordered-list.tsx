@@ -1,6 +1,6 @@
 import React from 'react';
-import {Prediction} from '../../../interfaces/IPredictions';
-import {UnorderedListComponentProps} from "../../../interfaces/IUnorderedList";
+import {Prediction} from '../../../interfaces/api-google/IPredictions';
+import {UnorderedListComponentProps} from "../../../interfaces/inputs/IUnorderedList";
 
 const UnorderedListComponent: React.FC<UnorderedListComponentProps> = ({predictions, openModal}) => {
   return (
