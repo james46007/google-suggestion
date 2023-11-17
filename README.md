@@ -37,3 +37,5 @@ Second run the cypress library
 ## Site Deploy
 
 https://google-suggestion.onrender.com/
+
+# I added the .env for testing purposes.
